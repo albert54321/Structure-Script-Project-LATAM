@@ -53,9 +53,9 @@
         </Label>
 
         <Label Foreground="White" Grid.Column="4" FontSize="16">Elija el Template de Estructuras</Label>
-        <ComboBox x:Name="CB1" SelectionChanged="CB1_SelectionChanged" Grid.Row="2"  Grid.Column="4" Margin="2,2,50,2"></ComboBox>
+        <ComboBox x:Name="CB1" ItemsSource="{Binding TemplatesName , Mode=TwoWay}"  Text="************************" SelectionChanged="CB1_SelectionChanged" Grid.Row="2"  Grid.Column="4" Margin="2,2,50,2"></ComboBox>
         <Label Foreground="White" Grid.Column="4" Grid.Row="7" VerticalAlignment="Bottom" FontSize="17" >Seleccionado:</Label>
-        <TextBox Name="Selected" IsReadOnly="True" Grid.Row="8" Grid.Column="4"  FontSize="16" Margin="10,10,50,10">*************************************************************</TextBox>
+        <TextBox Text="{Binding Path=SelectedItem , ElementName=CB1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Name="Selected" IsReadOnly="True" Grid.Row="8" Grid.Column="4"  FontSize="16" Margin="10,10,50,10"/>
         <Label Foreground="White" Grid.Column="4" Grid.Row="10" FontSize="16" HorizontalAlignment="Center">Creado por MSc. Alberto Alarcón @2020</Label>
     </Grid>
 </UserControl>

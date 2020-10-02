@@ -32,16 +32,18 @@ namespace ProyectoLA_Structures_Vs1
             my_ss = ss;
             Creation = new CreationStructures(ss);
             this.DataContext = Creation;
-            CB1.ItemsSource = Creation.TemplatesName;
+            //CB1.ItemsSource = Creation.TemplatesName;
         }
 
         public CreationStructures Creation;
+
         public StructureSet my_ss;
+        
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
             Creation = new CreationStructures(my_ss,Selected.Text);
             Creation.StartCreation();
-            MessageBox.Show("Proceso Terminado. Verifique la correcta ejecución de la tarea.");
+            MessageBox.Show("Proceso Terminado. Verifique la correcta ejecución de la tarea.", "ProyectoLA", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -57,7 +59,8 @@ namespace ProyectoLA_Structures_Vs1
         private void CB1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Apply.IsEnabled = true;
-            Selected.Text = CB1.SelectedValue.ToString();
+            
+            //CB1.SelectedValue.ToString();
         }
     }
 }

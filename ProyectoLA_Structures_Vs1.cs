@@ -10,8 +10,8 @@ using VMS.TPS.Common.Model.Types;
 using ProyectoLA_Structures_Vs1;
 
 // TODO: Replace the following version attributes by creating AssemblyInfo.cs. You can do this in the properties of the Visual Studio project.
-[assembly: AssemblyVersion("1.0.0.17")]
-[assembly: AssemblyFileVersion("1.0.0.17")]
+[assembly: AssemblyVersion("1.0.0.29")]
+[assembly: AssemblyFileVersion("1.0.0.29")]
 [assembly: AssemblyInformationalVersion("1.0")]
 
 // TODO: Uncomment the following line if the script requires write access.
@@ -19,16 +19,23 @@ using ProyectoLA_Structures_Vs1;
 
 namespace VMS.TPS
 {
-  public class Script
-  {
-    public Script()
+    public class Script
     {
-    }
+        public Script()
+        {
+        }
 
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    public void Execute(ScriptContext context, System.Windows.Window window /*, ScriptEnvironment environment*/)
-    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public void Execute(ScriptContext context, System.Windows.Window window /*, ScriptEnvironment environment*/)
+        {
             Licence();
+            if (context.Patient == null || context.StructureSet == null || context.Image==null)
+            {
+                MessageBox.Show(
+                    "Por favor cargue un paciente, imagen 3D, y conjunto de estructuras antes ejecutar esta rutina",
+                    "ProyectoLA", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.Application.Current.Shutdown();
+            }
             Image img = context.Image;
             StructureSet ss = context.StructureSet;
             Patient paciente = context.Patient;
@@ -37,8 +44,7 @@ namespace VMS.TPS
             window.Content = MainWindow;
             window.Height = MainWindow.Height;
             window.Width = MainWindow.Width;
-            window.Title = "ProyectoLA Creacion de Estructuras";
-            
+            window.Title = "ProyectoLA Creacion de Estructuras";        
     }
         private void Licence()
         {
